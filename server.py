@@ -12,7 +12,7 @@ class TaskService(tasks_pb2_grpc.TaskServiceServicer):
     def CreateTask(self, request, context):
 
         newTask = {
-            'uuid' : uuid.uuid4(),
+            'uuid' : str(uuid.uuid4()),
             'title': request.title,
             'description': request.description,
             'status': 0
