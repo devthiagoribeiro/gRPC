@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package tasks;
+
+enum Status{
+    TODO = 0;
+    DOING = 1;
+    DONE = 2;
+}
+
+message Task{
+    string uuid = 1;
+    string title = 2;
+    string description = 3;
+    Status status = 4;
+}
+
+message CreateTaskRequest{
+    string title = 1;
+    string description = 2;
+}
+
+message CreateTaskResponse{
+    Task task = 1;
+}
+
+message ListTasksRequest{}
+
+message ListTasksResponse{
+    Task task = 1;
+}
+
+message UpdateTaskRequest{
+    string uuid = 1;
+    string title = 2;
+    string description = 3;
+    Status status = 4;
+}
+
+message UpdateTaskResponse{
+    Task task = 1;
+}
+
+message DeleteTaskRequest{
+    string uuid = 1;
+}
+
+message DeleteTaskResponse{}
+
+service TaskService{
+    rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
+    rpc ListTasks (ListTasksRequest) returns (stream ListTasksResponse);
+    rpc UpdateTask (UpdateTaskRequest) returns (UpdateTaskResponse);
+    rpc DeleteTask (DeleteTaskRequest) returns (DeleteTaskResponse);
+
+}
