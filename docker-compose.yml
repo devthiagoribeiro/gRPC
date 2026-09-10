@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  server:
+    build: ./server
+    container_name: grpc_server
+    networks:
+      grpc_net:
+        ipv4_address: 172.28.0.10
+    ports:
+      - "50051:50051"
+
+  client1:
+    build: ./client
+    container_name: grpc_client1
+    environment:
+      - SERVER_ADDRESS=172.28.0.10:50051
+    networks:
+      grpc_net:
+        ipv4_address: 172.28.0.11
+    depends_on:
+      - server
+    stdin_open: true
+    tty: true
+
+  client2:
+    build: ./client
+    container_name: grpc_client2
+    environment:
+      - SERVER_ADDRESS=172.28.0.10:50051
+    networks:
+      grpc_net:
+        ipv4_address: 172.28.0.12
+    depends_on:
+      - server
+    stdin_open: true
+    tty: true
+
+networks:
+  grpc_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
