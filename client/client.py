@@ -1,9 +1,11 @@
 import grpc
 import tasks_pb2
 import tasks_pb2_grpc
+import os
 
 def main():
-    channel = grpc.insecure_channel('localhost:50051')
+    server_address = os.environ.get('SERVER_ADDRESS', 'localhost:50051')
+    channel = grpc.insecure_channel(server_address)
     stub = tasks_pb2_grpc.TaskServiceStub(channel)
 
     while True:
