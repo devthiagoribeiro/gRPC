@@ -34,11 +34,12 @@ class TaskService(tasks_pb2_grpc.TaskServiceServicer):
         for task in tasksMemory:
             if task['uuid'] == request.uuid:
                 target = task
-        target['title'] = request.title
-        target['description'] = request.description
-        target['status'] = request.status
-
-        return tasks_pb2.UpdateTaskResponse(task=tasks_pb2.Task(**target))
+                target['title'] = request.title
+                target['description'] = request.description
+                target['status'] = request.status
+                return tasks_pb2.UpdateTaskResponse(task=tasks_pb2.Task(**target))
+                
+        return tasks_pb2.UpdateTaskResponse(task=None)
 
     def DeleteTask(self, request, context):
         for i, task in enumerate(tasksMemory):
