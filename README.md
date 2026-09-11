@@ -2,6 +2,13 @@
 
 Sistema de gerenciamento de tarefas cliente-servidor construído com **gRPC** e **Protocol Buffers**, desenvolvido para a disciplina de Sistemas Distribuídos. O projeto demonstra comunicação remota tipada entre serviços distribuídos, com servidor e clientes rodando em containers Docker isolados, cada um com seu próprio endereço IP.
 
+### Integrantes:
+ * Guilherme Emetério Santos Lima 
+ * Thiago Roberto de Lima Ribeiro
+ * João Emanuel Santos do Nascimento
+ * Emmanuel de Souza Silva
+
+
 ## Funcionalidades
 
 - **CriarTarefa** — cria uma nova tarefa com ID único (UUID)
